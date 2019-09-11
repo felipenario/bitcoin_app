@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'dart:async';
 import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
@@ -9,7 +10,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  String _bitcoin = "";
+  String _bitcoin = "0";
 
   void _verificarBitcoin() async{
 
@@ -18,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     response = await http.get(url);
     Map<String, dynamic> retorno = json.decode(response.body);
-    String valorBitcoin = retorno["BRL"];
+    String valorBitcoin = retorno["BRL"]["buy"].toString();
 
     setState(() {
       _bitcoin = "${valorBitcoin}";
@@ -36,13 +37,15 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            Image.asset("imagens/bitcoin.png"),
             Padding(
-              padding: EdgeInsets.only(bottom: 16),
-              child: Image.asset("imagens/bitcoin.png"),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 16),
-              child: Text(_bitcoin),
+              padding: EdgeInsets.only(top: 30, bottom: 30),
+              child: Text(
+                  "R\$"+_bitcoin,
+                style: TextStyle(
+                  fontSize: 35
+                ),
+              ),
             ),
             RaisedButton(
               child: Text(
@@ -56,6 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _verificarBitcoin();
               },
               color: Colors.orange,
+              padding: EdgeInsets.fromLTRB(30, 15, 30, 15),
             ),
           ],
         ),
