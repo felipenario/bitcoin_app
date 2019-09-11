@@ -1,6 +1,6 @@
 # bitcoin_app
 
-A new Bitcoin application.
+Um aplicativo feito durante os estudos de Flutter.
 
 ## Getting Started
 
