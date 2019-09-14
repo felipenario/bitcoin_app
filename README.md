@@ -1,6 +1,6 @@
 # bitcoin_app
 
-Um aplicativo feito durante os estudos de Flutter.
+Um aplicativo feito durante os estudos de Flutter. OBS: Versão de teste.
 
 ## Getting Started
 
